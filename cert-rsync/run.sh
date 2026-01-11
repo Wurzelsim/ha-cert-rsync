@@ -21,12 +21,23 @@ SUPERVISOR_API="http://supervisor/core/restart"
 mkdir -p "${SSH_DIR}"
 chmod 700 "${SSH_DIR}"
 
+
+if [ "${SUPERVISOR_BUILD}" = "true" ]; then
+    if [ -f "$KNOWN_HOSTS_FILE" ]; then
+        echo "[INFO] Rebuild detected — clearing known_hosts"
+        rm -f "$KNOWN_HOSTS_FILE"
+    fi
+fi
+
+
 ### Generate SSH key if missing
 if [ ! -f "${KEY_FILE}" ]; then
   echo "[INFO] Generating SSH key..."
   ssh-keygen -t ed25519 -N "" -f "${KEY_FILE}"
   echo "[INFO] Public key (add to remote server):"
   cat "${KEY_FILE}.pub"
+  echo "[INFO ]You may want to restrict access on the remote Server by prepending the following:"
+  echo "command="/usr/bin/rrsync -ro /home/certs/data/",no-agent-forwarding,no-port-forwarding,no-pty,no-user-rc,no-X11-forwarding ssh-ed25519 AAA....."
 fi
 
 
