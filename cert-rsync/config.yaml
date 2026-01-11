@@ -1,7 +1,7 @@
 name: "Certificate Sync via SSH and rsync"
 slug: cert-rsync
 description: "Sync HTTPS certificates from a central server via SSH and rsync and restart Home Assistant when they change"
-version: "0.1.4"
+version: "0.1.5"
 startup: services
 boot: auto
 init: false
