@@ -16,7 +16,7 @@ LOCAL_PATH=$(jq -r '.local_path' "$OPTIONS")
 SSH_PORT=$(jq -r '.ssh_port' "$OPTIONS")
 SYNC_INTERVAL=$(jq -r '.sync_interval' "$OPTIONS")
 
-SUPERVISOR_API="http://supervisor/core/restart"
+#SUPERVISOR_API="http://supervisor/core/restart"
 
 mkdir -p "${SSH_DIR}"
 chmod 700 "${SSH_DIR}"
@@ -64,9 +64,12 @@ while true; do
     echo "[INFO] Certificate changes detected"
     echo "[INFO] Restarting Home Assistant Core..."
 
-    curl -s -X POST \
-      -H "Authorization: Bearer ${SUPERVISOR_TOKEN}" \
-      "${SUPERVISOR_API}"
+#    curl -s -X POST \
+#      -H "Authorization: Bearer ${SUPERVISOR_TOKEN}" \
+#      -H "Content-Type: application/json" \
+#      "${SUPERVISOR_API}"
+
+    /run/s6/basedir/bin/halt
 
   else
     echo "[INFO] No certificate changes detected"
