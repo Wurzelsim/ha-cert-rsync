@@ -1,0 +1,4 @@
+# https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
+name: "Certificate Sync via SSH and rsync"
+url: "https://github.com/Wurzelsim/ha-cert-rsync/cert-rsync"
+maintainer: "Wurzelsim <24791567+Wurzelsim@users.noreply.github.com>"
