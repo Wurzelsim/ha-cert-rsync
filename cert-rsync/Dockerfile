@@ -1,7 +1,7 @@
-FROM alpine:3.19
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
 RUN apk add --no-cache \
-    bash \
     openssh \
     rsync \
     ca-certificates \
