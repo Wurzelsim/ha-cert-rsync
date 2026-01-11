@@ -1,0 +1,31 @@
+name: "Certificate Sync via SSH"
+slug: cert-rsync
+description: "Sync HTTPS certificates from a central server via SSH and rsync and restart Home Assistant when they change"
+version: "0.1.0"
+startup: services
+boot: auto
+init: false
+
+arch:
+  - amd64
+  - aarch64
+  - armv7
+
+map:
+  - ssl:rw
+
+options:
+  remote_user: "cert"
+  remote_host: "example.com"
+  remote_path: "/"
+  local_path: "/ssl"
+  ssh_port: 22
+  sync_interval: 86400
+
+schema:
+  remote_user: str
+  remote_host: str
+  remote_path: str
+  local_path: str
+  ssh_port: int
+  sync_interval: int
