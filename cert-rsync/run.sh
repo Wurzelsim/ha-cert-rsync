@@ -55,7 +55,7 @@ while true; do
 
   RSYNC_OUTPUT=$(
     rsync -az --delete --itemize-changes --chown=root:root \
-      -e "ssh -p ${SSH_PORT} -i ${KEY_FILE} -o StrictHostKeyChecking=yes" \
+      -e "ssh -p ${SSH_PORT} -i ${KEY_FILE} -o UserKnownHostsFile=${KNOWN_HOSTS_FILE} -o StrictHostKeyChecking=yes" \
       "${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}" \
       "${LOCAL_PATH}/" || true
   )
